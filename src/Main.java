@@ -13,6 +13,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main extends JFrame {
 
@@ -49,30 +52,80 @@ public class Main extends JFrame {
 		lblAdivinaLosIngredientes.setForeground(new Color(188, 143, 143));
 		lblAdivinaLosIngredientes.setFont(new Font("Tahoma", Font.BOLD, 26));
 		
-		JRadioButton BotonTCC = new JRadioButton("Tortilla con cebolla");
-		buttonGroup.add(BotonTCC);
+		JRadioButton radiobotonTCC = new JRadioButton("Tortilla con cebolla");
+		buttonGroup.add(radiobotonTCC);
 		
-		JRadioButton BotonTSC = new JRadioButton("Tortilla sin cebolla");
-		buttonGroup.add(BotonTSC);
+		JRadioButton radiobotonTSC = new JRadioButton("Tortilla sin cebolla");
+		buttonGroup.add(radiobotonTSC);
 		
-		JRadioButton BotonTFJ = new JRadioButton("Tortilla francesa con jamon");
-		buttonGroup.add(BotonTFJ);
+		JRadioButton radiobotonTFJ = new JRadioButton("Tortilla francesa con jamon");
+		buttonGroup.add(radiobotonTFJ);
 		
 		JCheckBox patataCB = new JCheckBox("Patata");
 		
-		JCheckBox PimientoCB = new JCheckBox("Pimiento");
+		JCheckBox pimientoCB = new JCheckBox("Pimiento");
 		
-		JCheckBox HuevoCB = new JCheckBox("Huevo");
+		JCheckBox huevoCB = new JCheckBox("Huevo");
 		
-		JCheckBox LechugaCB = new JCheckBox("Lechuga");
+		JCheckBox lechugaCB = new JCheckBox("Lechuga");
 		
-		JCheckBox CebollaCB = new JCheckBox("Cebolla");
+		JCheckBox cebollaCB = new JCheckBox("Cebolla");
 		
-		JCheckBox ChorizoCB = new JCheckBox("Chorizo");
+		JCheckBox chorizoCB = new JCheckBox("Chorizo");
 		
-		JCheckBox ZanahoriaCB = new JCheckBox("Zanahoria");
+		JCheckBox zanahoriaCB = new JCheckBox("Zanahoria");
 		
-		JCheckBox JamonCB = new JCheckBox("Jamon");
+		JCheckBox jamonCB = new JCheckBox("Jamon");
+		
+		JButton botonComprobar = new JButton("Comprobar");
+		botonComprobar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (radiobotonTCC.isSelected()){
+					if (patataCB.isSelected() 
+						&& !pimientoCB.isSelected() 
+						&& huevoCB.isSelected()
+						&& !lechugaCB.isSelected() 
+						&& cebollaCB.isSelected() 
+						&& !chorizoCB.isSelected()
+						&& !zanahoriaCB.isSelected() 
+						&& !jamonCB.isSelected())
+					{
+						botonComprobar.setBackground(Color.GREEN);
+					} else {
+						botonComprobar.setBackground(Color.RED);
+					}
+				} else if (radiobotonTSC.isSelected()){
+					if (patataCB.isSelected() 
+						&& !pimientoCB.isSelected() 
+						&& huevoCB.isSelected()
+						&& !lechugaCB.isSelected() 
+						&& !cebollaCB.isSelected() 
+						&& !chorizoCB.isSelected()
+						&& !zanahoriaCB.isSelected() 
+						&& !jamonCB.isSelected())
+						{
+							botonComprobar.setBackground(Color.GREEN);
+						} else {
+							botonComprobar.setBackground(Color.RED);
+						}
+					
+				} else if (radiobotonTFJ.isSelected()){
+					if (!patataCB.isSelected() 
+							&& !pimientoCB.isSelected() 
+							&& huevoCB.isSelected()
+							&& !lechugaCB.isSelected() 
+							&& !cebollaCB.isSelected() 
+							&& !chorizoCB.isSelected()
+							&& !zanahoriaCB.isSelected() 
+							&& jamonCB.isSelected())
+						{
+							botonComprobar.setBackground(Color.GREEN);
+						} else {
+							botonComprobar.setBackground(Color.RED);
+						}
+				}
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -82,24 +135,26 @@ public class Main extends JFrame {
 							.addContainerGap()
 							.addComponent(lblAdivinaLosIngredientes, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(BotonTCC)
-							.addGap(18)
-							.addComponent(BotonTSC)
-							.addGap(18)
-							.addComponent(BotonTFJ))
-						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(112)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(patataCB)
-								.addComponent(PimientoCB)
-								.addComponent(HuevoCB)
-								.addComponent(LechugaCB))
+								.addComponent(pimientoCB)
+								.addComponent(huevoCB)
+								.addComponent(lechugaCB))
 							.addGap(36)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(CebollaCB)
-								.addComponent(JamonCB)
-								.addComponent(ZanahoriaCB)
-								.addComponent(ChorizoCB))))
+								.addComponent(cebollaCB)
+								.addComponent(jamonCB)
+								.addComponent(zanahoriaCB)
+								.addComponent(chorizoCB)))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(botonComprobar)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(radiobotonTCC)
+								.addGap(18)
+								.addComponent(radiobotonTSC)
+								.addGap(18)
+								.addComponent(radiobotonTFJ))))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -109,26 +164,28 @@ public class Main extends JFrame {
 					.addComponent(lblAdivinaLosIngredientes, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(BotonTCC)
-						.addComponent(BotonTSC)
-						.addComponent(BotonTFJ))
+						.addComponent(radiobotonTCC)
+						.addComponent(radiobotonTSC)
+						.addComponent(radiobotonTFJ))
 					.addGap(26)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(patataCB)
-						.addComponent(CebollaCB))
+						.addComponent(cebollaCB))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(PimientoCB)
-						.addComponent(ChorizoCB))
+						.addComponent(pimientoCB)
+						.addComponent(chorizoCB))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(HuevoCB)
-						.addComponent(ZanahoriaCB))
+						.addComponent(huevoCB)
+						.addComponent(zanahoriaCB))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(LechugaCB)
-						.addComponent(JamonCB))
-					.addContainerGap(39, Short.MAX_VALUE))
+						.addComponent(lechugaCB)
+						.addComponent(jamonCB))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(botonComprobar)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
